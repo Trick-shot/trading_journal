@@ -1,0 +1,4 @@
+django==5.0.5
+djangorestframework==3.15.1
+pillow==10.2.0
+mysql-client==0.0.1
