@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# SECURITY WARNING: keep the secret key used in production secret!3
 SECRET_KEY = 'django-insecure-voc%)2b=g*ep-+%1h_e)yucn5ewxo_op3xdvbv9(4nky2s3)5$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    'restframework',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -134,4 +134,3 @@ REST_FRAMEWORK = {'DEFAULT_PERMISSION_CLASSES': [
     'rest_framework.permission.AllowAny']}
 
 CORS_ORIGIN_ALLOW_ALL = True
-

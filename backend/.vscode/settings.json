@@ -4,5 +4,6 @@
   "editor.formatOnSave": true,
   "files.autoSaveWhenNoErrors": true,
   "files.autoSave": "afterDelay",
-  "djangointellisense.debugMessages": true
+  "djangointellisense.debugMessages": true,
+  "cSpell.words": ["corsheaders", "ewxo", "xdvbv", "yucn"]
 }
