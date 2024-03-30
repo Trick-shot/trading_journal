@@ -16,4 +16,5 @@ class TradeSerializer(ModelSerializer):
 
 class StrategySerializer(ModelSerializer):
     class Meta:
+        model = Strategy
         fields = '__all__'

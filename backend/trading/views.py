@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .serializers import TradeSerializer
+from .serializers import TradeSerializer, StrategySerializer
 from .models import Trade, Strategy
 
 from rest_framework.generics import GenericAPIView, CreateAPIView
