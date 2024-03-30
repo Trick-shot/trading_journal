@@ -9,6 +9,7 @@ djangorestframework = "*"
 pillow = "*"
 mysqlclient = "*"
 django-cors-headers = "*"
+django-jazzmin = "*"
 
 [dev-packages]
 
