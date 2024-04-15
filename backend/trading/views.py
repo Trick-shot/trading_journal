@@ -14,7 +14,7 @@ class TradeViewSet(ModelViewSet):
     serializer_class = TradeSerializer
     queryset = Trade.objects.all()
     lookup_field = 'pk'
-
+    
 
 class StrategyViewSet(ModelViewSet):
     serializer_class = StrategySerializer

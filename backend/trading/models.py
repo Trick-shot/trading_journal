@@ -26,8 +26,6 @@ class Trade(models.Model):
     ]
 
     asset_name = models.ForeignKey('Asset', on_delete=models.PROTECT)
-    account_id = models.ForeignKey(
-        'Account', on_delete=models.PROTECT, blank=True, null=True)
     strategy = models.ForeignKey(
         'Strategy', on_delete=models.CASCADE, null=True, blank=True)
     commission_fee = models.IntegerField(null=True, blank=True)
@@ -47,30 +45,36 @@ class Trade(models.Model):
     before_screenshot = models.ImageField(
         upload_to='media/', null=True, blank=True)
     entry_date = models.DateTimeField()
-    exit_date = models.DateTimeField(null=True, blank=True)
     notes = models.TextField(null=True, blank=True)
-
+    
+    def __str__(self):
+        return self.asset_name.name
 
 class TradeResult(models.Model):
+    account= models.ForeignKey(
+        'Account', on_delete=models.PROTECT, blank=True, null=True)
     trade = models.OneToOneField(
         "Trade", on_delete=models.CASCADE, null=True, blank=True)
     profit_loss = models.DecimalField(
         max_digits=10, decimal_places=2, null=True, blank=True)
+    exit_date = models.DateTimeField(null=True, blank=True)
     status = models.CharField(max_length=100, null=True, blank=True)
+    is_won = models.BooleanField(default=False, null=True, blank=True)
     after_screenshot = models.ImageField(
         upload_to='media/', null=True, blank=True)
 
     def __str__(self):
         return f"Result for Trade {self.trade.pk}"
-
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.account.balance += self.profit_loss
+        self.account.save()
+    
 
 class Strategy(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
-    wins_hit_tp = models.IntegerField(null=True, blank=True)
-    wins_break_even = models.IntegerField(null=True, blank=True)
-    break_even = models.IntegerField(null=True, blank=True)
-    losses = models.IntegerField(null=True, blank=True)
-
+    description = models.TextField(null=True, blank=True)
     def __str__(self):
         return self.name
 
@@ -88,11 +92,15 @@ class Account(models.Model):
     account_id = models.IntegerField(null=True, blank=True)
     name = models.CharField(max_length=100, null=True, blank=True)
     server_name = models.CharField(max_length=100, null=True, blank=True)
+    balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     type_option = models.CharField(max_length=100, null=True, blank=True)
     platform = models.CharField(max_length=100, null=True, blank=True)
     leverage = models.CharField(max_length=100, null=True, blank=True)
     type = models.CharField(max_length=100, null=True, blank=True)
-
+    broker = models.ForeignKey('Broker', on_delete=models.PROTECT, blank=True, null=True)
+    
+    def __str__(self):
+        return self.name
 
 class Broker(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
@@ -100,3 +108,25 @@ class Broker(models.Model):
 
     def __str__(self):
         return self.name
+
+class Withdraw(models.Model):
+    account = models.ForeignKey('Account', on_delete=models.PROTECT, null=True, blank=True)
+    amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.account.balance -= self.amount
+        self.account.save()
+    
+ 
+class Deposit(models.Model):
+    account = models.ForeignKey('Account', on_delete=models.PROTECT, null=True, blank=True )  
+    amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.account.balance += self.amount
+        self.account.save()
+    
