@@ -11,14 +11,14 @@ class TradeResultSerializer(ModelSerializer):
 
 
 class TradeSerializer(ModelSerializer):
-    trade_result = TradeResultSerializer()
+    trade_result = TradeResultSerializer(many=True)
 
-    url = serializers.HyperlinkedIdentityField(
-        view_name='trade-detail', lookup_field='pk')
+    # url = serializers.HyperlinkedIdentityField(
+    # view_name='trade-detail', lookup_field='pk')
 
     class Meta:
         model = Trade
-        fields = ['url', 'id', 'asset_name', 'strategy', 'commission_fee', 'type_of_trade',
+        fields = ['id', 'asset_name', 'strategy', 'commission_fee', 'type_of_trade',
                   'take_profit', 'stop_loss', 'risk_reward_ratio', 'targeted_profit',
                   'targeted_loss', 'time_frame', 'emotions_during_trade', 'position_size', 'before_screenshot', 'entry_date', 'trade_result']
 
@@ -44,3 +44,10 @@ class DepositSerializer(ModelSerializer):
     class Meta:
         model = Deposit
         field = '__all__'
+
+
+class AccountAnalyticsSerializer(serializers.Serializer):
+    account_balance = serializers.DecimalField(max_digits=5, decimal_places=2)
+    num_trade_take = serializers.IntegerField()
+    num_trade_lost = serializers.IntegerField()
+    num_trade_won = serializers.IntegerField()

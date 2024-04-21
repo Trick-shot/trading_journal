@@ -1,13 +1,10 @@
-from django.urls import path, include
+from django.urls import path
+from rest_framework_nested import routers
+from . import views
 
-from .views import TradeViewSet, StrategyViewSet
+router = routers.DefaultRouter()
+router.register(r'account-analytics',
+                views.AccountAnalyticsViewSet, basename='account-analytics')
 
-from rest_framework.routers import DefaultRouter
 
-router = DefaultRouter()
-router.register(r'Trade', TradeViewSet, basename='trade')
-router.register(r'Strategy', StrategyViewSet, basename='strategy')
-
-urlpatterns = [
-    path('', include(router.urls))
-]
+urlpatterns = router.urls

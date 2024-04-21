@@ -1,21 +1,53 @@
 from django.shortcuts import render
+# serializers
+from trading.serializers import TradeSerializer, TradeResultSerializer, StrategySerializer, AccountAnalyticsSerializer
+# models
+from trading.models import Trade, TradeResult, Strategy, Asset, Account, Broker
 
-from .serializers import TradeSerializer, StrategySerializer
-from .models import Trade, Strategy
-
-from rest_framework.generics import GenericAPIView, CreateAPIView
-from rest_framework.viewsets import ModelViewSet
+# rest_framework
+from rest_framework.views import APIView
+from rest_framework.generics import RetrieveAPIView, ListAPIView
+from rest_framework import viewsets, status
 from rest_framework.response import Response
+from rest_framework.exceptions import MethodNotAllowed
+from rest_framework.decorators import action
 
-# Create your views here.
+
+class AccountAnalyticsViewSet(viewsets.ViewSet):
+    queryset = TradeResult.objects.all()
+
+    # @action(detail=False, methods=['post'])
+    def retrieve(self, request):
+        trades = self.queryset
+        account_id = 10
+
+        # Assuming you pass account_id in the request data
+        account = Account.objects.get(id=account_id)
+
+        account_balance = account.balance
+
+        # retrieve number of trades taken by a user
+        num_trade_taken = trades.filter(account=account).count()
+        num_trade_won = trades.filter(account=account, is_won=True).count()
+        num_trade_lost = trades.filter(account=account, is_won=False).count()
+
+        data = {
+            'account_balance': account_balance,
+            'num_trade_taken': num_trade_taken,
+            'num_trade_won': num_trade_won,
+            'num_trade_lost': num_trade_lost
+        }
+
+        serializer = AccountAnalyticsSerializer(data=data)
+        serializer.is_valid(raise_exception=True
+                            )
+        return Response(serializer.data)
 
 
-class TradeViewSet(ModelViewSet):
+class Last10TradesView(ListAPIView):
     serializer_class = TradeSerializer
-    queryset = Trade.objects.all()
     lookup_field = 'pk'
-    
 
-class StrategyViewSet(ModelViewSet):
-    serializer_class = StrategySerializer
-    queryset = Strategy.objects.all()
+    def get_queryset(self):
+        last10_trade = Trade.objects.order_by('-entry_date')[:10]
+        return last10_trade

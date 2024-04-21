@@ -46,12 +46,13 @@ class Trade(models.Model):
         upload_to='media/', null=True, blank=True)
     entry_date = models.DateTimeField()
     notes = models.TextField(null=True, blank=True)
-    
+
     def __str__(self):
         return self.asset_name.name
 
+
 class TradeResult(models.Model):
-    account= models.ForeignKey(
+    account = models.ForeignKey(
         'Account', on_delete=models.PROTECT, blank=True, null=True)
     trade = models.OneToOneField(
         "Trade", on_delete=models.CASCADE, null=True, blank=True)
@@ -65,16 +66,17 @@ class TradeResult(models.Model):
 
     def __str__(self):
         return f"Result for Trade {self.trade.pk}"
-    
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         self.account.balance += self.profit_loss
         self.account.save()
-    
+
 
 class Strategy(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
+
     def __str__(self):
         return self.name
 
@@ -97,10 +99,12 @@ class Account(models.Model):
     platform = models.CharField(max_length=100, null=True, blank=True)
     leverage = models.CharField(max_length=100, null=True, blank=True)
     type = models.CharField(max_length=100, null=True, blank=True)
-    broker = models.ForeignKey('Broker', on_delete=models.PROTECT, blank=True, null=True)
-    
+    broker = models.ForeignKey(
+        'Broker', on_delete=models.PROTECT, blank=True, null=True)
+
     def __str__(self):
-        return self.name
+        return f'{self.account_id}, {self.name}'
+
 
 class Broker(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
@@ -109,24 +113,28 @@ class Broker(models.Model):
     def __str__(self):
         return self.name
 
+
 class Withdraw(models.Model):
-    account = models.ForeignKey('Account', on_delete=models.PROTECT, null=True, blank=True)
-    amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    account = models.ForeignKey(
+        'Account', on_delete=models.PROTECT, null=True, blank=True)
+    amount = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-    
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         self.account.balance -= self.amount
         self.account.save()
-    
- 
+
+
 class Deposit(models.Model):
-    account = models.ForeignKey('Account', on_delete=models.PROTECT, null=True, blank=True )  
-    amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    account = models.ForeignKey(
+        'Account', on_delete=models.PROTECT, null=True, blank=True)
+    amount = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-    
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         self.account.balance += self.amount
         self.account.save()
-    
