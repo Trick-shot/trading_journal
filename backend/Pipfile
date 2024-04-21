@@ -12,6 +12,7 @@ django-cors-headers = "*"
 django-jazzmin = "*"
 djangorestframework-simplejwt = "*"
 "drf.nested.routers" = "*"
+jazzmin = "*"
 
 [dev-packages]
 
