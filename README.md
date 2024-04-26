@@ -25,27 +25,3 @@ Key Features
     Trade Import: Import trade data from various sources, including brokerage platforms, CSV files, or manual entry.
 
     Export and Sharing: Export trade data and reports for further analysis or share insights with colleagues or mentors.
-
-Getting Started
-
-To get started with the Trading Journal, follow these steps:
-
-    Installation: Clone this repository to your local machine and set up the required environment.
-
-    Configuration: Customize the settings and preferences according to your trading style and preferences.
-
-    Data Entry: Start recording your trades by entering relevant information such as trade date, asset details, entry/exit prices, and trade outcomes.
-
-    Analysis: Explore the analytical tools and reports to gain insights into your trading performance. Identify strengths, weaknesses, and areas for improvement.
-
-    Refinement: Use the insights gained from analysis to refine your trading strategies, adjust risk management techniques, and optimize your trading approach.
-
-Contributing
-
-Contributions to the Trading Journal project are welcome! Whether it's bug fixes, feature enhancements, or documentation improvements, your contributions help make this software better for everyone. Refer to the CONTRIBUTING.md file for guidelines on how to contribute.
-License
-
-This project is licensed under the MIT License.
-Acknowledgements
-
-Special thanks to all the contributors who have helped shape the Trading Journal project. Your efforts and contributions are greatly appreciated.
