@@ -1,8 +1,6 @@
 # trading_journal
 This is a Trading Journal for forex traders, file tracking their trading perfomance .
 
-Trading Journal
-
 Welcome to the Trading Journal repository! This software is designed to help traders track their progress, analyze their trades, and make informed decisions to improve their trading strategies.
 Overview
 
