@@ -4,15 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
-djangorestframework = "*"
-pillow = "*"
-mysqlclient = "*"
-django-cors-headers = "*"
-django-jazzmin = "*"
-djangorestframework-simplejwt = "*"
-"drf.nested.routers" = "*"
-jazzmin = "*"
+djoser = "*"
 
 [dev-packages]
 
