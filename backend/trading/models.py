@@ -24,7 +24,8 @@ class Trade(models.Model):
         ("BE", "BREAK_EVEN"),
         ("DEFAULT", "DEFAULT")
     ]
-
+    account = models.ForeignKey(
+        'Account', on_delete=models.PROTECT, blank=True, null=True)
     asset_name = models.ForeignKey('Asset', on_delete=models.PROTECT)
     strategy = models.ForeignKey(
         'Strategy', on_delete=models.CASCADE, null=True, blank=True)
@@ -52,8 +53,6 @@ class Trade(models.Model):
 
 
 class TradeResult(models.Model):
-    account = models.ForeignKey(
-        'Account', on_delete=models.PROTECT, blank=True, null=True)
     trade = models.OneToOneField(
         "Trade", on_delete=models.CASCADE, null=True, blank=True)
     profit_loss = models.DecimalField(
@@ -69,8 +68,8 @@ class TradeResult(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        self.account.balance += self.profit_loss
-        self.account.save()
+        self.trade.account.balance += self.profit_loss
+        self.trade.account.save()
 
 
 class Strategy(models.Model):

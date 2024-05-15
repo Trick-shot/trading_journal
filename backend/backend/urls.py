@@ -7,5 +7,5 @@ urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
     path('Trading/', include('trading.urls')),
-    path('__debug__/', include(debug_toolbar.urls)),
+    path('__debug__/', include('debug_toolbar.urls')),
 ]

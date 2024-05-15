@@ -6,11 +6,31 @@ from trading.models import Trade, TradeResult, Strategy, Asset, Account, Broker
 
 # rest_framework
 from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.generics import RetrieveAPIView, ListAPIView
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.decorators import action
+
+
+class TradeViewSet(ModelViewSet):
+    queryset = Trade.objects.all()
+    serializer_class = TradeSerializer
+
+    def get_serializer_context(self):
+        return {'request': self.request}
+
+
+class TradeResultViewSet(ModelViewSet):
+    queryset = TradeResult.objects.all()
+    serializer_class = TradeResultSerializer
+
+    def get_serializer_context(self):
+        return {'trade_id': self.kwargs['trade_pk']}
+
+    def get_queryset(self):
+        return TradeResult.objects.filter(trade_id=self.kwargs['trade_pk'])
 
 
 class AccountAnalyticsViewSet(viewsets.ViewSet):

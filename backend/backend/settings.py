@@ -27,7 +27,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'jazzmin',
     'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
@@ -36,7 +35,6 @@ INSTALLED_APPS = [
     # App
     'trading',
     'core',
-    'user',
 ]
 
 MIDDLEWARE = [

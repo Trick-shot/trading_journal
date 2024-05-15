@@ -6,10 +6,14 @@ from . import views
 #     TokenRefreshView,
 # )
 
-
 router = routers.DefaultRouter()
+router.register(r'trades', views.TradeViewSet, basename='Ttrade')
 router.register(r'account-analytics',
                 views.AccountAnalyticsViewSet, basename='account-analytics')
+
+trades_router = routers.NestedDefaultRouter(router, 'trades', lookup='trade') 
+trades_router.register('trade_result', views.TradeResultViewSet , basename='trade-result')
+
 
 
 urlpatterns = router.urls

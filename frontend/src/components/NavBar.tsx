@@ -3,7 +3,7 @@ import MenuBar from "./MenuBar";
 
 const NavBar = () => {
   return (
-    <HStack>
+    <HStack justifyContent={"space-between"}>
       <Text>Dashboard</Text>
       <MenuBar />
     </HStack>
