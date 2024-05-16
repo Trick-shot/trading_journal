@@ -1,19 +1,13 @@
-from django.urls import path, include
 from rest_framework_nested import routers
 from . import views
-# from rest_framework_simplejwt.views import (
-#     TokenObtainPairView,
-#     TokenRefreshView,
-# )
 
 router = routers.DefaultRouter()
-router.register(r'trades', views.TradeViewSet, basename='Ttrade')
-router.register(r'account-analytics',
-                views.AccountAnalyticsViewSet, basename='account-analytics')
-
-trades_router = routers.NestedDefaultRouter(router, 'trades', lookup='trade') 
-trades_router.register('trade_result', views.TradeResultViewSet , basename='trade-result')
-
+router.register('strategy', views.StrategyViewSet, basename='Strategy')
+router.register('asset', views.AssetViewSet, basename='Asset')
+router.register('account', views.AccountViewSet, basename='Account')
+router.register('broker', views.BrokerViewSet, basename='Broker')
+router.register('withdraw', views.WithdrawViewSet, basename='Withdraw')
+router.register('Deposit', views.DepositViewSet, basename='Deposit')
 
 
 urlpatterns = router.urls

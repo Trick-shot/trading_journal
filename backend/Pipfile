@@ -5,6 +5,13 @@ name = "pypi"
 
 [packages]
 djoser = "*"
+djangorestframework = "*"
+django-jazzmin = "*"
+mysqlclient = "*"
+django-cors-headers = "*"
+drf-nested-routers = "*"
+django-debug-toolbar = "*"
+pillow = "*"
 
 [dev-packages]
 

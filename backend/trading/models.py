@@ -54,7 +54,7 @@ class Trade(models.Model):
 
 class TradeResult(models.Model):
     trade = models.OneToOneField(
-        "Trade", on_delete=models.CASCADE, null=True, blank=True)
+        "Trade", on_delete=models.CASCADE, null=True, blank=True, related_name='results')
     profit_loss = models.DecimalField(
         max_digits=10, decimal_places=2, null=True, blank=True)
     exit_date = models.DateTimeField(null=True, blank=True)
