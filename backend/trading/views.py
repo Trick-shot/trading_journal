@@ -1,6 +1,25 @@
 from rest_framework.viewsets import ModelViewSet
-from .serializers import StrategySerializer, AssetSerializer, AccountSerializer, BrokerSerializer, WithdrawSerializer, DepositSerializer
-from .models import Strategy, Asset, Account, Broker, Withdraw, Deposit
+from .serializers import TradeSerializer, TradeResultSerializer, StrategySerializer, AssetSerializer, AccountSerializer, BrokerSerializer, WithdrawSerializer, DepositSerializer
+from .models import Trade, TradeResult, Strategy, Asset, Account, Broker, Withdraw, Deposit
+
+
+class TradeViewSet(ModelViewSet):
+    queryset = Trade.objects.all()
+    serializer_class = TradeSerializer
+
+    def get_serializer_context(self):
+        return {'request': self.request}
+
+
+class TradeResultViewSet(ModelViewSet):
+    queryset = TradeResult.objects.all()
+    serializer_class = TradeResultSerializer
+
+    # def get_serializer_context(self):
+    #     return {'trade_id': self.kwargs['trade_pk']}
+
+    # def get_queryset(self):
+    #     return TradeResult.objects.filter(trade_id=self.kwargs['trade_pk'])
 
 
 class StrategyViewSet(ModelViewSet):

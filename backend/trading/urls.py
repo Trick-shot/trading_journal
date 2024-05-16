@@ -2,12 +2,15 @@ from rest_framework_nested import routers
 from . import views
 
 router = routers.DefaultRouter()
-router.register('strategy', views.StrategyViewSet, basename='Strategy')
-router.register('asset', views.AssetViewSet, basename='Asset')
-router.register('account', views.AccountViewSet, basename='Account')
-router.register('broker', views.BrokerViewSet, basename='Broker')
-router.register('withdraw', views.WithdrawViewSet, basename='Withdraw')
-router.register('Deposit', views.DepositViewSet, basename='Deposit')
+router.register('trades', views.TradeViewSet, basename='trades')
+router.register('strategy', views.StrategyViewSet, basename='strategy')
+router.register('assets', views.AssetViewSet, basename='assets')
+router.register('accounts', views.AccountViewSet, basename='accounts')
+router.register('brokers', views.BrokerViewSet, basename='brokers')
+router.register('withdraws', views.WithdrawViewSet, basename='withdraws')
+router.register('deposits', views.DepositViewSet, basename='deposits')
 
+trades_router = routers.NestedDefaultRouter(router, 'trades', lookup='trade')
+trades_router.register('results', views.TradeResultViewSet, basename='trade-results')
 
-urlpatterns = router.urls
+urlpatterns = router.urls + trades_router.urls
