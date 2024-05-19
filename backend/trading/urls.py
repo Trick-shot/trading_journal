@@ -11,6 +11,7 @@ router.register('withdraws', views.WithdrawViewSet, basename='withdraws')
 router.register('deposits', views.DepositViewSet, basename='deposits')
 
 trades_router = routers.NestedDefaultRouter(router, 'trades', lookup='trade')
-trades_router.register('results', views.TradeResultViewSet, basename='trade-results')
+trades_router.register(
+    'results', views.TradeResultViewSet, basename='trade-results')
 
 urlpatterns = router.urls + trades_router.urls

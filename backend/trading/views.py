@@ -15,11 +15,11 @@ class TradeResultViewSet(ModelViewSet):
     queryset = TradeResult.objects.all()
     serializer_class = TradeResultSerializer
 
-    # def get_serializer_context(self):
-    #     return {'trade_id': self.kwargs['trade_pk']}
+    def get_serializer_context(self):
+        return {'trade_id': self.kwargs['trade_pk']}
 
-    # def get_queryset(self):
-    #     return TradeResult.objects.filter(trade_id=self.kwargs['trade_pk'])
+    def get_queryset(self):
+        return TradeResult.objects.filter(trade_id=self.kwargs['trade_pk'])
 
 
 class StrategyViewSet(ModelViewSet):
