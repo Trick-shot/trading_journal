@@ -26,7 +26,7 @@ const MenuBar = () => {
         Strategy
       </MenuButton>
       <MenuList>
-      {strategy.map((strategy) => (<MenuItem key={strategy.id}>{strategy.name}</MenuItem >))}
+      {strategy.map((strategy) => (<MenuItem key={strategy.id} >{strategy.name}</MenuItem >))}
       </MenuList>
     </Menu>
   );
