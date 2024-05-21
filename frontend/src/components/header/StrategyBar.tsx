@@ -14,7 +14,7 @@ const MenuBar = () => {
 
   useEffect(() => {
     apiClient.get<Strategy[]>("/strategy/").then((res) => setStrategy(res.data));
-  });
+  }, []);
 
   return (
     <Menu>

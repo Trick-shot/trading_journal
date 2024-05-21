@@ -44,7 +44,7 @@ class Trade(models.Model):
     position_size = models.DecimalField(
         max_digits=3, decimal_places=2, null=True, blank=True)
     before_screenshot = models.ImageField(
-        upload_to='media/', null=True, blank=True)
+        upload_to='media/trades', null=True, blank=True)
     entry_date = models.DateTimeField()
     notes = models.TextField(null=True, blank=True)
 
@@ -61,7 +61,7 @@ class TradeResult(models.Model):
     status = models.CharField(max_length=100, null=True, blank=True)
     is_won = models.BooleanField(default=False, null=True, blank=True)
     after_screenshot = models.ImageField(
-        upload_to='media/', null=True, blank=True)
+        upload_to='media/trades/trade_results', null=True, blank=True)
 
     def __str__(self):
         return f"Result for Trade {self.trade.pk}"

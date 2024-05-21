@@ -1,5 +1,15 @@
-import { Box, Button, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Stack, Text, Divider, Heading } from "@chakra-ui/react";
+
+// icons
 import { AiFillHome } from "react-icons/ai";
+import { FaChartSimple } from "react-icons/fa6";
+import { SiHackthebox } from "react-icons/si";
+import { FaLayerGroup } from "react-icons/fa6";
+import { FaUikit } from "react-icons/fa";
+import { BsBank2 } from "react-icons/bs";
+import { FaMoneyBills } from "react-icons/fa6";
+import { GrMoney } from "react-icons/gr";
+import { GrTest } from "react-icons/gr";
 
 const SideBar = () => {
   return (
@@ -15,42 +25,60 @@ const SideBar = () => {
       alignItems={"center"}
       flexDirection={"column"}
     >
-      <Stack>
-        <Button
-          leftIcon={<AiFillHome />}
-          mt="97px"
-          variant="ghost"
-          h="46"
-          w="234px"
-        >
-          <Text ml="31px">Dashboard</Text>
+      <Heading
+        as="h2"
+        size="3x1"
+        mt="20px"
+        position="relative"
+        top="15px"
+        noOfLines={1}
+      >
+        Trading Journal
+      </Heading>
+      <Divider orientation="horizontal" position="relative" top="40px" />
+      <Stack >
+        <Button mt="70px" variant="ghost" h="46px" w="234px">
+          <AiFillHome />
+          <Text>Dashboard</Text>
         </Button>
-        <Button leftIcon={<AiFillHome />} variant="ghost">
+        <Button variant="ghost">
+          <GrTest />
           Backtest
         </Button>
-
-        <Text mt="54">Trading</Text>
-        <Button leftIcon={<AiFillHome />} variant="ghost">
+        <Text mt="50px" pl="19px">
+          Trading
+        </Text>
+        <Button variant="ghost">
+          <FaChartSimple />
           Trades
         </Button>
-        <Button leftIcon={<AiFillHome />} variant="ghost">
+        <Button variant="ghost">
+          <SiHackthebox />
           Strategy
         </Button>
-        <Button leftIcon={<AiFillHome />} variant="ghost">
+        <Button variant="ghost">
+          <FaLayerGroup />
           Assets
         </Button>
-        <Button leftIcon={<AiFillHome />} variant="ghost">
+        <Button variant="ghost">
+          <FaUikit />
           Account
         </Button>
-        <Button leftIcon={<AiFillHome />} variant="ghost">
+        <Button variant="ghost">
+          <BsBank2 />
           Broker
         </Button>
 
-        <Text mt="54">Transactions</Text>
-        <Button leftIcon={<AiFillHome />} variant="ghost">
+        <Text mt="50" pl="19">
+          Transactions
+        </Text>
+
+        <Button variant="ghost">
+          <FaMoneyBills />
           Deposit
         </Button>
-        <Button leftIcon={<AiFillHome />} variant="ghost">
+        <Button variant="ghost">
+          <GrMoney />
           Transaction
         </Button>
       </Stack>

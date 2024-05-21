@@ -5,16 +5,18 @@ import apiClient from "../../services/api-client";
 import { useEffect, useState } from "react";
 
 interface Account {
-  id: number,
+  id: number;
   name: string;
 }
 
 const AccountBar = () => {
+
+ 
   const [accounts, setAccounts] = useState<Account[]>([]);
 
   useEffect(() => {
     apiClient.get<Account[]>("/accounts/").then((res) => setAccounts(res.data));
-  });
+  }, []);
 
   return (
     <Menu>
@@ -24,10 +26,11 @@ const AccountBar = () => {
         borderRadius="13px"
         leftIcon={<ChevronDownIcon />}
       >
-        Accounts
       </MenuButton>
-      <MenuList>
-        {accounts.map((account) => (<MenuItem key={account.id}>{account.name}</MenuItem>))}
+      <MenuList >
+        {accounts.map((account) => (
+          <MenuItem key={account.id}>{account.name}</MenuItem>
+        ))}
       </MenuList>
     </Menu>
   );
