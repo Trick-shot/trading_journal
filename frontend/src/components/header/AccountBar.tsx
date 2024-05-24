@@ -10,8 +10,6 @@ interface Account {
 }
 
 const AccountBar = () => {
-
- 
   const [accounts, setAccounts] = useState<Account[]>([]);
 
   useEffect(() => {
@@ -26,8 +24,9 @@ const AccountBar = () => {
         borderRadius="13px"
         leftIcon={<ChevronDownIcon />}
       >
+        Accounts
       </MenuButton>
-      <MenuList >
+      <MenuList>
         {accounts.map((account) => (
           <MenuItem key={account.id}>{account.name}</MenuItem>
         ))}
