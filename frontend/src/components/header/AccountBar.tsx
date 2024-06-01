@@ -11,24 +11,31 @@ interface Account {
 
 const AccountBar = () => {
   const [accounts, setAccounts] = useState<Account[]>([]);
+  const [selectedAccount, setSelectedAccount] = useState<string>();
 
   useEffect(() => {
     apiClient.get<Account[]>("/accounts/").then((res) => setAccounts(res.data));
   }, []);
 
+  const handleSelect = (name: string) => {
+    setSelectedAccount(name);
+  };
+
   return (
     <Menu>
       <MenuButton
         as={Button}
-        mr="52px"
+        mr="59px"
         borderRadius="13px"
         leftIcon={<ChevronDownIcon />}
       >
-        Accounts
+        {selectedAccount != null ? selectedAccount : "Account"}
       </MenuButton>
       <MenuList>
         {accounts.map((account) => (
-          <MenuItem key={account.id}>{account.name}</MenuItem>
+          <MenuItem key={account.id} onClick={() => handleSelect(account.name)}>
+            {account.name}
+          </MenuItem>
         ))}
       </MenuList>
     </Menu>

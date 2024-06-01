@@ -81,8 +81,9 @@ class Strategy(models.Model):
 
 
 class Asset(models.Model):
-    name = models.CharField(max_length=100, null=True, blank=True)
-    symbol = models.CharField(max_length=100, null=True, blank=True)
+    name = models.CharField(max_length=100, null=True, blank=True, unique=True)
+    symbol = models.CharField(
+        max_length=100, null=True, blank=True, unique=True)
     market = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):

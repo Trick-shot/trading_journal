@@ -9,9 +9,17 @@ const NavBar = () => {
   return (
     <>
       <BreadCrumb />
-      <HStack justifyContent={"space-between"} p={2} paddingTop={0} >
-        <Text>Dashboard</Text>
-        <Stack flexDirection="row" display="flex">
+      <HStack justifyContent={"space-between"}>
+        <Text position="relative" bottom="2">
+          Dashboard
+        </Text>
+        <Stack
+          flexDirection="row"
+          display="flex"
+          position="relative"
+          bottom="4"
+          justifyContent="space-evenly"
+        >
           <AssetBar />
           <StrategyBar />
           <AccountBar />

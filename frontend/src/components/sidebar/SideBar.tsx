@@ -7,7 +7,6 @@ import {
   Text,
   Divider,
   Heading,
-  background,
 } from "@chakra-ui/react";
 
 // icons
