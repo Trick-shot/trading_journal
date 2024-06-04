@@ -1,4 +1,11 @@
-import { Button, Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
+import {
+  Button,
+  Box,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+} from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 
 import apiClient from "../../services/api-client";
@@ -27,7 +34,14 @@ const AccountBar = () => {
         as={Button}
         mr="59px"
         borderRadius="13px"
-        leftIcon={<ChevronDownIcon />}
+        w="140"
+        h="34"
+        pr="5"
+        leftIcon={
+          <Box position="relative" right="1">
+            <ChevronDownIcon />
+          </Box>
+        }
       >
         {selectedAccount != null ? selectedAccount : "Account"}
       </MenuButton>

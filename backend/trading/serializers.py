@@ -1,5 +1,6 @@
-from .models import Strategy, Asset, Account, Broker, Withdraw, Deposit, Trade, TradeResult
 from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
+from .models import Strategy, Asset, Account, Broker, Withdraw, Deposit, Trade, TradeResult
 
 
 class TradeResultSerializer(ModelSerializer):
@@ -9,7 +10,8 @@ class TradeResultSerializer(ModelSerializer):
 
     class Meta:
         model = TradeResult
-        fields = ['id', 'profit_loss', 'exit_date', 'status', 'is_won', 'after_screenshot']
+        fields = ['id', 'profit_loss', 'exit_date',
+                  'status', 'is_won', 'after_screenshot']
 
 
 class TradeSerializer(ModelSerializer):
@@ -17,7 +19,7 @@ class TradeSerializer(ModelSerializer):
 
     class Meta:
         model = Trade
-        fields = ['id', 'asset_name', 'strategy', 'commission_fee', 'type_of_trade', 'take_profit', 'stop_loss', 'risk_reward_ratio', 'targeted_profit',
+        fields = ['id', 'account', 'asset_name', 'strategy', 'commission_fee', 'type_of_trade', 'take_profit', 'stop_loss', 'risk_reward_ratio', 'targeted_profit',
                   'targeted_loss', 'time_frame', 'emotions_during_trade', 'position_size', 'before_screenshot', 'entry_date', 'notes', 'results']
 
 
@@ -55,3 +57,10 @@ class DepositSerializer(ModelSerializer):
     class Meta:
         model = Deposit
         fields = '__all__'
+
+
+class StatusBarSerializer(serializers.Serializer):
+    account_balance = serializers.DecimalField(max_digits=10, decimal_places=2)
+    won_trades = serializers.IntegerField()
+    lost_trades = serializers.IntegerField()
+    trades_taken = serializers.IntegerField()

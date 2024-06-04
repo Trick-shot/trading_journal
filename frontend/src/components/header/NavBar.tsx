@@ -18,7 +18,6 @@ const NavBar = () => {
           display="flex"
           position="relative"
           bottom="4"
-          justifyContent="space-evenly"
         >
           <AssetBar />
           <StrategyBar />

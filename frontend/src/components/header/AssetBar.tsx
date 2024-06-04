@@ -1,5 +1,6 @@
 import {
   Button,
+  Box,
   Menu,
   MenuButton,
   MenuList,
@@ -39,12 +40,17 @@ const AccountBar = () => {
       <MenuButton
         as={Button}
         borderRadius="13px"
-        leftIcon={<ChevronDownIcon />}
-        w="123px"
-        h="34px"
-        p="5"
+        leftIcon={
+          <Box position="relative" right="1">
+            {<ChevronDownIcon />}
+          </Box>
+        }
+        w="140"
+        h="34"
+        pr="5"
+        mr="5"
       >
-        <Text pr="2" position='relative' right="1">{selectedAsset != null ? selectedAsset : "Assets"}</Text>
+        <Text mr="6">{selectedAsset != null ? selectedAsset : "Assets"}</Text>
       </MenuButton>
       <MenuList>
         {assets.map((asset) => (

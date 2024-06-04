@@ -1,5 +1,13 @@
-import { Button, Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
-import { ChevronDownIcon } from "@chakra-ui/icons";
+import {
+  Button,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Text,
+  Box,
+} from "@chakra-ui/react";
+import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 
 import apiClient from "../../services/api-client";
 import { useEffect, useState } from "react";
@@ -11,6 +19,7 @@ interface Strategy {
 
 const MenuBar = () => {
   const [strategy, setStrategy] = useState<Strategy[]>([]);
+  const [select, setSelected] = useState<boolean>(false);
   const [selectedStrategy, setSelectedStrategy] = useState<string>();
 
   useEffect(() => {
@@ -19,24 +28,40 @@ const MenuBar = () => {
       .then((res) => setStrategy(res.data));
   }, []);
 
-  const handleSelect = (name: string) => {
+  const handleClick = (name: string) => {
     setSelectedStrategy(name);
+  };
+
+  const handleSelect = () => {
+    setSelected(true);
   };
   return (
     <Menu>
       <MenuButton
         as={Button}
-        leftIcon={<ChevronDownIcon />}
+        leftIcon={
+          <Box position="relative" right="1">
+            {select === true ? <ChevronUpIcon /> : <ChevronDownIcon />}
+          </Box>
+        }
+        onClick={() => handleSelect}
         borderRadius="13px"
-        size="mdx"
+        pr="5"
+        mr="5"
+        w="140"
+        h="34"
       >
-        {selectedStrategy != null ? selectedStrategy : "Strategy"}
+        {" "}
+        <Text pl="1" pr="5" position="relative" right="1">
+          {selectedStrategy != null ? selectedStrategy : "Strategy"}
+        </Text>
       </MenuButton>
       <MenuList>
         {strategy.map((strategy) => (
           <MenuItem
             key={strategy.id}
-            onClick={() => handleSelect(strategy.name)}
+            onClick={() => handleClick(strategy.name)}
+            overflow="hidden"
           >
             {strategy.name}
           </MenuItem>

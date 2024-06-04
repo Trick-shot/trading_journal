@@ -25,7 +25,7 @@ class Trade(models.Model):
         ("DEFAULT", "DEFAULT")
     ]
     account = models.ForeignKey(
-        'Account', on_delete=models.PROTECT, blank=True, null=True)
+        'Account', on_delete=models.PROTECT, related_name="trades")
     asset_name = models.ForeignKey('Asset', on_delete=models.PROTECT)
     strategy = models.ForeignKey(
         'Strategy', on_delete=models.CASCADE, null=True, blank=True)

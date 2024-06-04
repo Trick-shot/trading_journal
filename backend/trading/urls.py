@@ -1,3 +1,4 @@
+from django.urls import path
 from rest_framework_nested import routers
 from . import views
 
@@ -14,4 +15,7 @@ trades_router = routers.NestedDefaultRouter(router, 'trades', lookup='trade')
 trades_router.register(
     'results', views.TradeResultViewSet, basename='trade-results')
 
-urlpatterns = router.urls + trades_router.urls
+urlpatterns = [
+    path('/dashboard/status-bar/<int:account_id>/',
+         views.StatusBarView.as_view(), name='status-bar'),
+] + router.urls + trades_router.urls
