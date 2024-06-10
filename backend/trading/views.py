@@ -1,11 +1,12 @@
 from django.shortcuts import get_object_or_404
 
-from rest_framework.response import Response
-from rest_framework.viewsets import ModelViewSet
-from rest_framework.views import APIView
-
 from .serializers import TradeSerializer, TradeResultSerializer, StrategySerializer, AssetSerializer, AccountSerializer, BrokerSerializer, WithdrawSerializer, DepositSerializer, StatusBarSerializer
 from .models import Trade, TradeResult, Strategy, Asset, Account, Broker, Withdraw, Deposit
+
+from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
+from rest_framework.views import APIView
+from rest_framework.generics import ListAPIView
 
 
 class TradeViewSet(ModelViewSet):
@@ -56,16 +57,20 @@ class DepositViewSet(ModelViewSet):
     queryset = Deposit.objects.all()
     serializer_class = DepositSerializer
 
+
 # Dashboard
 
+class StatusBarView(ListAPIView):
+    serializer_class = StatusBarSerializer
 
-class StatusBarView(APIView):
-    def get(self, request, account_id):
+    def list(self, request, account_id):
         account = get_object_or_404(Account, id=account_id)
 
         account_balance = account.balance
-        won_trades = Trade.objects.filter(account=account, is_won=True)
-        lost_trades = Trade.objects.filter(account=account, is_won=False)
+        won_trades = Trade.objects.filter(
+            account=account, results__is_won=True).count()
+        lost_trades = Trade.objects.filter(
+            account=account, results__is_won=False).count()
         trades_taken = Trade.objects.filter(account=account).count()
 
         data = {
@@ -76,5 +81,4 @@ class StatusBarView(APIView):
         }
 
         serializer = StatusBarSerializer(data)
-
         return Response(serializer.data)

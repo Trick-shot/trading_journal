@@ -107,8 +107,9 @@ class Account(models.Model):
 
 
 class Broker(models.Model):
-    name = models.CharField(max_length=100, null=True, blank=True)
-    commission_rate = models.DecimalField(max_digits=5, decimal_places=2)
+    name = models.CharField(max_length=100, null=True)
+    commission_rate = models.DecimalField(
+        max_digits=5, decimal_places=2, null=True)
 
     def __str__(self):
         return self.name
@@ -116,10 +117,10 @@ class Broker(models.Model):
 
 class Withdraw(models.Model):
     account = models.ForeignKey(
-        'Account', on_delete=models.PROTECT, null=True, blank=True)
+        'Account', on_delete=models.PROTECT, null=True)
     amount = models.DecimalField(
-        max_digits=10, decimal_places=2, null=True, blank=True)
-    date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+        max_digits=10, decimal_places=2, null=True)
+    date = models.DateTimeField(auto_now_add=True, null=True)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -129,10 +130,10 @@ class Withdraw(models.Model):
 
 class Deposit(models.Model):
     account = models.ForeignKey(
-        'Account', on_delete=models.PROTECT, null=True, blank=True)
+        'Account', on_delete=models.PROTECT, null=True)
     amount = models.DecimalField(
-        max_digits=10, decimal_places=2, null=True, blank=True)
-    date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+        max_digits=10, decimal_places=2, null=True)
+    date = models.DateTimeField(auto_now_add=True, null=True)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)

@@ -16,6 +16,6 @@ trades_router.register(
     'results', views.TradeResultViewSet, basename='trade-results')
 
 urlpatterns = [
-    path('/dashboard/status-bar/<int:account_id>/',
-         views.StatusBarView.as_view(), name='status-bar'),
+    path('status-bar/<int:account_id>',
+         views.StatusBarView.as_view(), name='status-bar')
 ] + router.urls + trades_router.urls

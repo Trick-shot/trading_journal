@@ -1,19 +1,65 @@
 import { Box, Stack, Text } from "@chakra-ui/react";
-import { ReactNode, useState } from "react";
-import apiClient from "../../services/api-client";
+import { ReactNode } from "react";
 
 interface Props {
   statusName: string;
   Icon: ReactNode;
-  endPoint: string;
+  Status: string;
+  statusData: number;
 }
 
-const StatusBar = ({ statusName, Icon, endPoint }: Props) => {
-    const [status, setStatus] = useState();
+const StatusBar = ({ statusName, Icon, Status, statusData }: Props) => {
+  const StatusContent = (Status: string, statusData: number) => {
+    if (Status === "account_balance") {
+      return (
+        <Stack
+          display="flex"
+          flexDirection="row"
+          pt="0"
+          position="relative"
+          bottom="2"
+        >
+          <Text fontSize="20">${statusData}</Text>
+          <Text fontSize="11" pl="1" mt="2">
+            {" "}
+            +15%
+          </Text>
+        </Stack>
+      );
+    } else if (Status === "amount_trade_taken") {
+      return (
+        <Text pt="0" position="relative" bottom="2" fontSize="20">
+          {statusData}
+        </Text>
+      );
+    } else if (Status === "trade_won") {
+      return (
+        <Text pt="0" position="relative" bottom="2" fontSize="20">
+          {statusData}
+        </Text>
+      );
+    } else if (Status === "trade_lost") {
+      return (
+        <Text pt="0" position="relative" bottom="2" fontSize="20">
+          {statusData}
+        </Text>
+      );
+    } else {
+      return (
+        <Stack
+          display="flex"
+          flexDirection="row"
+          pt="0"
+          position="relative"
+          bottom="2"
+        >
+          <Text fontSize="20">no Data</Text>
+          <Text fontSize="11" pl="1" mt="2"></Text>
+        </Stack>
+      );
+    }
+  };
 
-  useEffect(() => {
-    apiClient.get(endPoint).then(res) => SetStatus(res.data));
-  }, []);
   return (
     <Box
       w="370px"
@@ -27,23 +73,11 @@ const StatusBar = ({ statusName, Icon, endPoint }: Props) => {
       pl="3"
       mr="7"
     >
-      <Stack display="flex" flexDirection="column" position="relative" pb="0">
+      <Stack display="flex" flexDirection="column" position="relative">
         <Text pb="0" left="100000000" mr="6" fontSize="11" color="#78879D">
           {statusName}
         </Text>
-        <Stack
-          display="flex"
-          flexDirection="row"
-          pt="0"
-          position="relative"
-          bottom="2"
-        >
-          <Text fontSize="20">$580,00</Text>
-          <Text fontSize="11" pl="1" mt="2">
-            {" "}
-            +15%
-          </Text>
-        </Stack>
+        {StatusContent(Status, statusData)}
       </Stack>
       <Box
         bgColor="#0075FF"
