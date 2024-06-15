@@ -1,9 +1,12 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, Tuple } from "@reduxjs/toolkit";
+import reducer from "./reducer";
+import api from "./middleware/api";
 
-  
+export const store = configureStore({
+  reducer,
+  middleware: () => new Tuple(api),
+});
 
-export default function () {
-    return configureStore({ reducer: {
-     dashboard: dashboardReducer,
-    } });
-}
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+export type AppStore = typeof store;

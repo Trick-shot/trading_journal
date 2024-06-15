@@ -8,7 +8,10 @@ import { AiOutlineLineChart } from "react-icons/ai";
 import { MdOutlineCancel } from "react-icons/md";
 import { MdGppGood } from "react-icons/md";
 
+import { loadStatus, getStatus } from "../store/dashboard";
+import { useAppDispatch, useAppStore, useAppSelector } from "../app/hooks";
 import apiClient from "../services/api-client";
+// import { store } from "../store/configureStore";
 
 interface statusData {
   account_balance: number;
@@ -18,16 +21,20 @@ interface statusData {
 }
 
 const Dashboard = () => {
-  const [status, setStatus] = useState<statusData>({});
+  const [status, setStatus] = useState<statusData>({
+    account_balance: 0,
+    trades_taken: 0,
+    won_trades: 0,
+    lost_trades: 0,
+  });
+  const stateList: statusData = useAppSelector(getStatus);
 
-  useEffect(() => {
-    apiClient.get("/status-bar/1").then((res) => setStatus(res.data));
-  }, []);
+  useEffect(() => setStatus(stateList));
 
   return (
     <>
       {/* First view */}
-      <Stack flexDirection="row" justifyContent="sp">
+      <Stack flexDirection="row" justifyContent="">
         <StatusBar
           statusData={status.account_balance}
           statusName="Account balance"

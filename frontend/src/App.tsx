@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom";
+
 import { Grid, GridItem, Show } from "@chakra-ui/react";
+
 import NavBar from "./components/header/NavBar";
 import SideBar from "./components/sidebar/SideBar";
 // pages
@@ -26,7 +28,7 @@ function App() {
     >
       <GridItem area="nav">
         <NavBar />
-      </GridItem>
+      </GridItem> 
       <Show above="lg">
         <GridItem area="aside">
           <SideBar />
