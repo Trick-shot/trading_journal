@@ -37,13 +37,14 @@ const SideBar = () => {
   return (
     <Box
       bg={"rgba(5, 12, 39, 0.42)"}
-      h={"913px"}
-      w={"264px"}
-      position={"fixed"}
-      m={"14px"}
-      mt="9px"
-      borderRadius={"30px"}
-      display={"Flex"}
+      h="920px"
+      w="264px"
+      position="fixed"
+      m="14px"
+      mt="7px"
+      ml="13px"
+      borderRadius="30px"
+      display="Flex"
       alignItems={"center"}
       flexDirection={"column"}
     >
@@ -52,30 +53,44 @@ const SideBar = () => {
         size="3x1"
         mt="18px"
         position="relative"
-        top="15px"
+        top="10px"
         noOfLines={1}
       >
         Trading Journal
       </Heading>
-      <Divider orientation="horizontal" position="relative" top="30px" />
+      <Divider orientation="horizontal" position="relative" top="25px" />
 
-      <ButtonGroup
-        display="flex"
-        flexDirection="column"
-        variant="ghost"
-        size="md"
-      >
+      <ButtonGroup display="flex" flexDirection="column" variant="ghost">
         <Stack display="flex" justifyContent="space-evenly">
           <Link to="/">
             <Button
-              leftIcon={<AiFillHome size="16" />}
+              width="234px"
+              height="46px"
+              leftIcon={
+                active === 0 ? (
+                  <Box
+                    bgColor="#0075FF"
+                    width="23px"
+                    height="20px"
+                    borderRadius="6"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    p="0"
+                  >
+                    <AiFillHome size="16" />
+                  </Box>
+                ) : (
+                  <AiFillHome size="16" />
+                )
+              }
               mt="60px"
               borderRadius="17"
               iconSpacing="6"
               isActive={active === 0}
               onClick={() => handleClick(0)}
             >
-              <Text fontSize="16" pr="10">
+              <Text fontSize="16" pr="10" mr="10px">
                 Dashboard
               </Text>
             </Button>
@@ -83,13 +98,31 @@ const SideBar = () => {
 
           <Link to="/backtest">
             <Button
-              leftIcon={<GrTest size="16" />}
+              width="234px"
+              height="46px"
+              leftIcon={
+                active === 1 ? (
+                  <Box
+                    bgColor="#0075FF"
+                    width="23px"
+                    height="20px"
+                    borderRadius="6"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <GrTest size="16" />
+                  </Box>
+                ) : (
+                  <GrTest size="16" />
+                )
+              }
               borderRadius="17"
-              iconSpacing="7"
+              iconSpacing="6"
               isActive={active === 1}
               onClick={() => handleClick(1)}
             >
-              <Text fontSize="16" pr="10">
+              <Text fontSize="16" pr="10" mr="26px">
                 Backtest
               </Text>
             </Button>
@@ -97,74 +130,164 @@ const SideBar = () => {
         </Stack>
 
         <Stack display="flex" justifyContent="space-evenly">
-          <Text mt="50px" pl="19px">
+          <Text mt="25px" pl="19px">
             Trading
           </Text>
           <Link to="/trades">
             <Button
-              leftIcon={<FaChartSimple size="16" />}
+              width="234px"
+              height="46px"
+              leftIcon={
+                active === 2 ? (
+                  <Box
+                    bgColor="#0075FF"
+                    width="23px"
+                    height="20px"
+                    borderRadius="6"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <FaChartSimple size="16" />
+                  </Box>
+                ) : (
+                  <FaChartSimple size="16" />
+                )
+              }
               borderRadius="17"
-              iconSpacing="7"
+              iconSpacing="6"
               isActive={active === 2}
               onClick={() => handleClick(2)}
             >
-              <Text pr="10" fontSize="16">
+              <Text pr="10" fontSize="16" mr="54px">
                 Trades
               </Text>
             </Button>
           </Link>
           <Link to="/strategy">
             <Button
-              leftIcon={<SiHackthebox size="16" />}
+              width="234px"
+              height="46px"
+              leftIcon={
+                active === 3 ? (
+                  <Box
+                    bgColor="#0075FF"
+                    width="26px"
+                    height="23px"
+                    borderRadius="6"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <SiHackthebox size="19" />
+                  </Box>
+                ) : (
+                  <SiHackthebox size="19" />
+                )
+              }
               borderRadius="17"
-              iconSpacing="7"
+              iconSpacing="6"
               fontSize="15"
               isActive={active === 3}
               onClick={() => handleClick(3)}
             >
-              <Text fontSize="16" pr="10">
+              <Text fontSize="16" pr="10" mr="45px">
                 Strategy
               </Text>
             </Button>
           </Link>
           <Link to="/assets">
             <Button
-              leftIcon={<FaLayerGroup size="16" />}
+              width="234px"
+              height="46px"
+              leftIcon={
+                active === 4 ? (
+                  <Box
+                    bgColor="#0075FF"
+                    width="26px"
+                    height="23px"
+                    borderRadius="6"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <FaLayerGroup size="16" />
+                  </Box>
+                ) : (
+                  <FaLayerGroup size="16" />
+                )
+              }
               borderRadius="17"
               iconSpacing="7"
               fontSize="15"
               isActive={active === 4}
               onClick={() => handleClick(4)}
             >
-              <Text fontSize="16" pr="10">
+              <Text fontSize="16" pr="10" mr="54px">
                 Assets
               </Text>
             </Button>
           </Link>
           <Link to="/accounts">
             <Button
-              leftIcon={<FaUikit size="16" />}
+              width="234px"
+              height="46px"
+              leftIcon={
+                active === 5 ? (
+                  <Box
+                    bgColor="#0075FF"
+                    width="26px"
+                    height="23px"
+                    borderRadius="6"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <FaUikit size="16" />
+                  </Box>
+                ) : (
+                  <FaUikit size="16" />
+                )
+              }
               borderRadius="17"
-              iconSpacing="7"
+              iconSpacing="6"
               fontSize="15"
               isActive={active === 5}
               onClick={() => handleClick(5)}
             >
-              <Text fontSize="15" pr="10">
+              <Text fontSize="15" pr="10" mr="53px">
                 Account
               </Text>
             </Button>
           </Link>
           <Link to="/broker">
             <Button
-              leftIcon={<BsBank2 size="16" />}
+              width="234px"
+              height="46px"
+              leftIcon={
+                active === 6 ? (
+                  <Box
+                    bgColor="#0075FF"
+                    width="26px"
+                    height="23px"
+                    borderRadius="6"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <BsBank2 size="16" />
+                  </Box>
+                ) : (
+                  <BsBank2 size="16" />
+                )
+              }
               borderRadius="17"
-              iconSpacing="7"
+              iconSpacing="6"
               fontSize="15"
               isActive={active === 6}
               onClick={() => handleClick(6)}
             >
-              <Text pr="10" fontSize="16">
+              <Text pr="10" fontSize="16" mr="61px">
                 Broker
               </Text>
             </Button>
@@ -177,27 +300,63 @@ const SideBar = () => {
           </Text>
           <Link to="/deposit">
             <Button
-              leftIcon={<FaMoneyBills size="16" />}
+              width="234px"
+              height="46px"
+              leftIcon={
+                active === 7 ? (
+                  <Box
+                    bgColor="#0075FF"
+                    width="26px"
+                    height="23px"
+                    borderRadius="6"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <FaMoneyBills size="16" />
+                  </Box>
+                ) : (
+                  <FaMoneyBills size="16" />
+                )
+              }
               borderRadius="17"
-              iconSpacing="7"
+              iconSpacing="6"
               isActive={active === 7}
               onClick={() => handleClick(7)}
             >
-              <Text fontSize="16" pr="10">
+              <Text fontSize="16" pr="10" mr="55px">
                 Deposit
               </Text>
             </Button>
           </Link>
           <Link to="/transaction">
             <Button
-              leftIcon={<GrMoney size="16" />}
+              width="234px"
+              height="46px"
+              leftIcon={
+                active === 8 ? (
+                  <Box
+                    bgColor="#0075FF"
+                    width="26px"
+                    height="23px"
+                    borderRadius="6"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <GrMoney size="16" />
+                  </Box>
+                ) : (
+                  <GrMoney size="16" />
+                )
+              }
               borderRadius="17"
-              iconSpacing="5"
+              iconSpacing="6"
               fontSize="15"
               isActive={active === 8}
               onClick={() => handleClick(8)}
             >
-              <Text fontSize="16" pr="10">
+              <Text fontSize="16" pr="10" mr="25px">
                 Transaction
               </Text>
             </Button>
@@ -209,7 +368,8 @@ const SideBar = () => {
       <Button
         leftIcon={<IoMdSettings />}
         position="relative"
-        top="32"
+        top="120px"
+        left="-11px"
         variant="ghost"
       >
         Settings

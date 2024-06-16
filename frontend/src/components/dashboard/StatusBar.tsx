@@ -8,6 +8,8 @@ interface Props {
   statusData: number;
 }
 
+
+
 const StatusBar = ({ statusName, Icon, Status, statusData }: Props) => {
   const StatusContent = (Status: string, statusData: number) => {
     if (Status === "account_balance") {
