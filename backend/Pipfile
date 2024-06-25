@@ -13,6 +13,7 @@ drf-nested-routers = "*"
 django-debug-toolbar = "*"
 pillow = "*"
 drf-redesign = "*"
+python-decouple = "*"
 
 [dev-packages]
 

@@ -13,6 +13,8 @@ import { useAppDispatch, useAppStore, useAppSelector } from "../app/hooks";
 import apiClient from "../services/api-client";
 import AccountDetails from "../components/dashboard/AccountDetails";
 import YearlyChart from "../components/dashboard/YearlyChart";
+import TradesList from "../components/dashboard/TradesList";
+import Reports from "../components/dashboard/Reports";
 
 interface statusData {
   account_balance: number;
@@ -33,12 +35,12 @@ interface AccountDetailsProps {
 const Dashboard = () => {
   const [status, setStatus] = useState<statusData>({});
   const [accountDetails, setAccountDetails] = useState<AccountDetailsProps>({});
-  // const stateList: statusData = useAppSelector(getStatus);
+  const stateList: statusData = useAppSelector(getStatus);
 
-  // useEffect(() => {
-  //   apiClient.get("/status-bar/1").then((res) => setStatus(res.data));
-  //   console.log(status);
-  // }, []);
+  useEffect(() => {
+    apiClient.get("/status-bar/1").then((res) => setStatus(res.data));
+    console.log(status);
+  }, []);
 
   useEffect(() => {
     apiClient.get("/accounts/1").then((res) => setAccountDetails(res.data));
@@ -92,8 +94,11 @@ const Dashboard = () => {
       <Stack>
         <YearlyChart />
       </Stack>
-
       {/* END Third View */}
+      <Stack>
+        <TradesList />
+        <Reports />
+      </Stack>
     </Stack>
   );
 };

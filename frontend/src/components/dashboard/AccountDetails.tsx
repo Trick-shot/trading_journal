@@ -1,5 +1,5 @@
 import { Box, Stack, Text } from "@chakra-ui/react";
-import jellyfish from "../../assets/jellyfish//pexels-vovaflame-2698871.jpg";
+import jellyfish from "../../assets/jellyfish/pexels-vovaflame-2698871.jpg";
 import CurrentAccountDate from "./CurrentAccountDate";
 
 export interface Props {
@@ -31,6 +31,7 @@ const AccountDetails = ({
       //   bgColor="#061233"
       bgImage={jellyfish}
       bgSize="cover"
+      bgColor="rgba(6, 12 ,33, 0.35)"
       bgPosition="right"
       bgRepeat="no-repeat"
       pl="22px"

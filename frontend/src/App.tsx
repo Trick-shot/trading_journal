@@ -24,11 +24,12 @@ function App() {
         lg: `"aside nav" 
             "aside main"`,
       }}
-      gridTemplateColumns={"290px 1fr"}
+      gridTemplateColumns={"286px 1fr"}
+      gridTemplateRows={"1fr"}
     >
       <GridItem area="nav">
         <NavBar />
-      </GridItem> 
+      </GridItem>
       <Show above="lg">
         <GridItem area="aside">
           <SideBar />

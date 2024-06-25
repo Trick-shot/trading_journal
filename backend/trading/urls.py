@@ -1,4 +1,3 @@
-from django.urls import path
 from rest_framework_nested import routers
 from . import views
 
@@ -10,12 +9,12 @@ router.register('accounts', views.AccountViewSet, basename='accounts')
 router.register('brokers', views.BrokerViewSet, basename='brokers')
 router.register('withdraws', views.WithdrawViewSet, basename='withdraws')
 router.register('deposits', views.DepositViewSet, basename='deposits')
+# Dashboard
+router.register('status-bar', views.StatusBarViewSet, basename='status-bar')
+router.register('yearly-chart', views.YearlyChartViewSet, basename='yearly-chart')
 
+# Nested router
 trades_router = routers.NestedDefaultRouter(router, 'trades', lookup='trade')
-trades_router.register(
-    'results', views.TradeResultViewSet, basename='trade-results')
+trades_router.register('results', views.TradeResultViewSet, basename='trade-results')
 
-urlpatterns = [
-    path('status-bar/<int:account_id>',
-         views.StatusBarView.as_view(), name='status-bar')
-] + router.urls + trades_router.urls
+urlpatterns =  router.urls + trades_router.urls

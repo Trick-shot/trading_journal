@@ -64,3 +64,10 @@ class StatusBarSerializer(serializers.Serializer):
     won_trades = serializers.IntegerField()
     lost_trades = serializers.IntegerField()
     trades_taken = serializers.IntegerField()
+
+
+class YearlyChartSerializer(serializers.Serializer):
+    # month = serializers.DateField()
+    profit = serializers.DecimalField(max_digits=10, decimal_places=2)
+    loss = serializers.DecimalField(max_digits=10, decimal_places=2)
+    net_profit = serializers.DecimalField(max_digits=10, decimal_places=2)

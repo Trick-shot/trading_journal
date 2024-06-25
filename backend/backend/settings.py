@@ -1,5 +1,6 @@
 from pathlib import Path
 from datetime import timedelta
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -9,10 +10,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!3
-SECRET_KEY = 'django-insecure-voc%)2b=g*ep-+%1h_e)yucn5ewxo_op3xdvbv9(4nky2s3)5$'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
+TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -77,12 +80,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'trading_journal',
-        'HOST': 'localhost',
-        'USER': 'root',
-        'PORT': 3306,
-        'PASSWORD': 'kijanicart'
+        'ENGINE': config('DATABASE_ENGINE'),
+        'NAME': config('DATABASE_NAME'),
+        'HOST': config('DATABASE_HOST'),
+        'USER': config('DATABASE_USER'),
+        'PORT': config('DATABASE_PORT'),
+        'PASSWORD': config('DATABASE_PASSWORD')
     }
 }
 
