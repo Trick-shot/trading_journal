@@ -1,11 +1,12 @@
-
+import { Box } from "@chakra-ui/react";
 
 const Backtest = () => {
   return (
     <div>
-      Backtest
+      backtest
+      <Box>hello</Box>
     </div>
-  )
-}
+  );
+};
 
-export default Backtest
+export default Backtest;

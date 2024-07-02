@@ -1,5 +1,13 @@
 from django.db import models
+from django.conf import settings
 
+
+class Trader(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    birth_date = models.DateField(null=True, blank=True)
+    
+    def __str__(self):
+        return f'{self.user.first_name} {self.user.second_name}'
 
 class Trade(models.Model):
     TYPE_OF_TRADE = [
@@ -124,3 +132,5 @@ class Deposit(models.Model):
         self.account.balance += self.amount
         self.account.save()
  
+    
+    

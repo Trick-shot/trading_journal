@@ -24,8 +24,9 @@ function App() {
         lg: `"aside nav" 
             "aside main"`,
       }}
-      gridTemplateColumns={"286px 1fr"}
-      gridTemplateRows={"1fr"}
+      gridTemplateColumns={{ base: "1fr", lg: "286px 1fr" }}
+      gridTemplateRows={{ base: "auto 1fr", lg: "auto 1fr" }}
+      height="100px"
     >
       <GridItem area="nav">
         <NavBar />

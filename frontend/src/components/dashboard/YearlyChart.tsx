@@ -138,17 +138,18 @@ const YearlyChart = () => {
 
   return (
     <Box
-      width="698px"
-      height="297px"
+      width="720px"
+      height="340px"
       border="blue"
       borderWidth="1px"
       borderRadius="20px"
       bgColor="rgba(6, 12 ,33, 0.35)"
       p="2"
+      pt="5"
       mt="10px"
     >
       {dataChart && (
-        <Bar data={dataChart} width="698px" height="297px" options={options} />
+        <Bar data={dataChart} width="720px" height="286px" options={options} />
       )}
     </Box>
   );

@@ -9,12 +9,15 @@ import { MdOutlineCancel } from "react-icons/md";
 import { MdGppGood } from "react-icons/md";
 
 import { loadStatus, getStatus } from "../store/dashboard";
-import { useAppDispatch, useAppStore, useAppSelector } from "../app/hooks";
+import { useAppDispatch, useAppStore, useAppSelector } from "../modules/hooks";
 import apiClient from "../services/api-client";
 import AccountDetails from "../components/dashboard/AccountDetails";
 import YearlyChart from "../components/dashboard/YearlyChart";
 import TradesList from "../components/dashboard/TradesList";
 import Reports from "../components/dashboard/Reports";
+import Projection from "../components/dashboard/Projection";
+import TradeResults from "../components/dashboard/TradeResults";
+import WinRatePerWeek from "../components/dashboard/WinRatePerWeek";
 
 interface statusData {
   account_balance: number;
@@ -48,7 +51,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <Stack pl="2px">
+    <Stack pl="7px" mt="20px">
       {/* First view */}
       <Stack flexDirection="row" justifyContent="">
         <StatusBar
@@ -77,7 +80,7 @@ const Dashboard = () => {
         />
       </Stack>
       {/* Second View */}
-      <Stack pt="11px">
+      <Stack pt="11px" flexDir="row">
         <AccountDetails
           accountName={accountDetails.name}
           serverName={accountDetails.server_name}
@@ -87,15 +90,18 @@ const Dashboard = () => {
           broker={accountDetails.broker}
           platform={accountDetails.platform}
         />
+        <TradeResults />
+        <WinRatePerWeek />
       </Stack>
       {/* END statusbar */}
 
       {/* Third View*/}
-      <Stack>
+      <Stack flexDir="row">
         <YearlyChart />
+        <Projection />
       </Stack>
       {/* END Third View */}
-      <Stack>
+      <Stack flexDir="row">
         <TradesList />
         <Reports />
       </Stack>

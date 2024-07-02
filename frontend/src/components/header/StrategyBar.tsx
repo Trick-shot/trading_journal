@@ -17,7 +17,7 @@ interface Strategy {
   name: string;
 }
 
-const  MenuBar = () => {
+const MenuBar = () => {
   const [strategy, setStrategy] = useState<Strategy[]>([]);
   const [select, setSelected] = useState<boolean>(false);
   const [selectedStrategy, setSelectedStrategy] = useState<string>();

@@ -24,8 +24,8 @@ const AccountDetails = ({
   console.log(accountId);
   return (
     <Box
-      width="452px"
-      height="262px"
+      width="492px"
+      height="302px"
       border="1"
       borderRadius="20px"
       //   bgColor="#061233"
