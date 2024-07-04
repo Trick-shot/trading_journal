@@ -1,0 +1,10 @@
+{
+  "editor.defaultFormatter": "ms-python.autopep8",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "files.autoSaveWhenNoErrors": true,
+  "files.autoSave": "afterDelay",
+  "djangointellisense.debugMessages": true,
+  "cSpell.words": ["corsheaders", "djoser", "ewxo", "jazzmin", "xdvbv", "yucn"],
+  "python.REPL.enableREPLSmartSend": false
+}
