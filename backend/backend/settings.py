@@ -13,11 +13,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 DEBUG = config('DEBUG', default=False, cast=bool)
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['100.42.180.129']
 
 
 # Application definition
@@ -169,7 +168,7 @@ SIMPLE_JWT = {
     #     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     #     "ROTATE_REFRESH_TOKENS": False,
     #     "BLACKLIST_AFTER_ROTATION": False,
-    #     "UPDATE_LAST_LOGIN": False,
+    #     "UPDATE_LAST_LOGIN": Fallwse,
 
     #     "ALGORITHM": "HS256",
     #     "SIGNING_KEY": SECRET_KEY,

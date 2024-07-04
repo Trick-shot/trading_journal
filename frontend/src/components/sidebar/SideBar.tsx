@@ -37,7 +37,7 @@ const SideBar = () => {
   return (
     <Box
       bg={"rgba(5, 12, 39, 0.42)"}
-      h="100vh"
+      h="969px"
       w="264px"
       position="fixed"
       m="14px"
