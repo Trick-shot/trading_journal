@@ -14,6 +14,7 @@ django-debug-toolbar = "*"
 pillow = "*"
 drf-redesign = "*"
 python-decouple = "*"
+gunicorn = "*"
 
 [dev-packages]
 
