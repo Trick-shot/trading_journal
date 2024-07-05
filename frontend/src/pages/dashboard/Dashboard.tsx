@@ -1,23 +1,27 @@
 import { useEffect, useState } from "react";
 
 import { Stack } from "@chakra-ui/react";
-import StatusBar from "../components/dashboard/StatusBar";
+import StatusBar from "../../components/dashboard/StatusBar";
 
 import { IoWallet } from "react-icons/io5";
 import { AiOutlineLineChart } from "react-icons/ai";
 import { MdOutlineCancel } from "react-icons/md";
 import { MdGppGood } from "react-icons/md";
 
-import { loadStatus, getStatus } from "../store/dashboard";
-import { useAppDispatch, useAppStore, useAppSelector } from "../modules/hooks";
-import apiClient from "../services/api-client";
-import AccountDetails from "../components/dashboard/AccountDetails";
-import YearlyChart from "../components/dashboard/YearlyChart";
-import TradesList from "../components/dashboard/TradesList";
-import Reports from "../components/dashboard/Reports";
-import Projection from "../components/dashboard/Projection";
-import TradeResults from "../components/dashboard/TradeResults";
-import WinRatePerWeek from "../components/dashboard/WinRatePerWeek";
+import { loadStatus, getStatus } from "../../store/dashboard";
+import {
+  useAppDispatch,
+  useAppStore,
+  useAppSelector,
+} from "../../modules/hooks";
+import apiClient from "../../services/api-client";
+import AccountDetails from "../../components/dashboard/AccountDetails";
+import YearlyChart from "../../components/dashboard/YearlyChart";
+import TradesList from "../../components/dashboard/TradesList";
+import Reports from "../../components/dashboard/Reports";
+import Projection from "../../components/dashboard/Projection";
+import TradeResults from "../../components/dashboard/TradeResults";
+import WinRatePerWeek from "../../components/dashboard/WinRatePerWeek";
 
 interface statusData {
   account_balance: number;
